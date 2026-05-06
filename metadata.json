@@ -1,0 +1,9 @@
+{
+  "name": "Fork of ReversX",
+  "description": "A minimalist AI-powered code editor and vibe-coding assistant.",
+  "requestFramePermissions": [
+    "clipboard-read",
+    "clipboard-write",
+    "microphone"
+  ]
+}

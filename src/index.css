@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&family=Inter:wght@300;400;600&family=Montserrat:wght@300;400;600&family=JetBrains+Mono:wght@400;500&family=Fira+Code:wght@400;500&family=Sora:wght@400;600&display=swap');
+@import "@vscode/codicons/dist/codicon.css";
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0d0d0d;
+  --color-foreground: #e0e0e0;
+  --color-border: #1a1a1a;
+  --color-sidebar: #0d0d0d;
+  --color-accent: #007acc;
+  --color-accent-dim: rgba(0, 122, 204, 0.2);
+  
+  --font-sans: "Segoe UI", "Tahoma", "Geneva", "Verdana", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Consolas", "Courier New", "Fira Code", "JetBrains Mono", ui-monospace, monospace;
+  --font-manrope: "Segoe UI", sans-serif;
+  --font-sora: "Segoe UI", sans-serif;
+  --font-roboto: "Segoe UI", sans-serif;
+  --font-inter: "Segoe UI", sans-serif;
+
+  --color-foreground-muted: rgba(224, 224, 224, 0.85);
+  --color-foreground-subtle: rgba(224, 224, 224, 0.6);
+  --color-accent-foreground: #ffffff;
+}
+
+@layer base {
+  html, body {
+    @apply bg-background text-foreground antialiased selection:bg-accent/20 selection:text-white;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 13px;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+  }
+  
+  #root {
+    height: 100%;
+    will-change: transform;
+  }
+
+  *, button, a, [role="button"], span, div, p, h1, h2, h3, h4, h5, h6, label, input, textarea {
+    font-family: inherit;
+    font-weight: 400;
+    text-transform: none !important;
+    border-radius: 4px !important; /* Soft corners for UI */
+    opacity: 1 !important; /* Prevent global low opacity */
+  }
+
+  /* Specific reset for text that often has low opacity */
+  .text-foreground-subtle, .text-foreground-muted, .opacity-70, .opacity-50 {
+    opacity: 1 !important;
+    color: var(--color-foreground-subtle) !important;
+  }
+
+  .cm-editor *, .cm-editor span, .cm-editor div {
+    font-family: inherit;
+    border-radius: 0 !important;
+  }
+
+  button, a, [role="button"] {
+    @apply active:scale-[0.98] transition-all;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 4px !important;
+  }
+}
+
+.hide-scrollbar, .no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar, .no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Elite Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(121, 121, 121, 0.2);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(121, 121, 121, 0.4);
+}
+
+/* Markdown Content Styling */
+.markdown-content {
+  font-family: 'Fira Code', var(--font-mono) !important;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+  color: var(--color-foreground);
+}
+
+.markdown-content *, .markdown-content p, .markdown-content span, .markdown-content li, .markdown-content div {
+  font-family: 'Fira Code', var(--font-mono) !important;
+}
+.markdown-content ul {
+  list-style-type: disc;
+  margin-left: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.markdown-content ol {
+  list-style-type: decimal;
+  margin-left: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.markdown-content li {
+  margin-bottom: 0.75rem;
+}
+.markdown-content p {
+  margin-bottom: 1rem;
+}
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+.markdown-content strong {
+  color: var(--color-foreground);
+  font-weight: 700;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 1px;
+}
+
+.markdown-content li::marker {
+  color: var(--color-foreground);
+}
+
+.markdown-content pre {
+  max-width: 100%;
+  overflow-x: auto;
+  user-select: text; /* Allow code selection */
+}
+
+code, pre, .ace_editor, input, textarea {
+  user-select: text !important; /* Ensure code and inputs are selectable */
+}
+
+code, pre {
+  font-family: inherit;
+}
+
+/* User Name Design */
+.user-name-design {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-foreground);
+  text-shadow: 
+      0 0 10px rgba(0, 0, 0, 0.1),
+      0 0 20px rgba(0, 150, 255, 0.1);
+  display: inline-block;
+  margin-top: 10px;
+  user-select: none;
+}
+
+.user-name-design:hover {
+  color: #00d2ff;
+  text-shadow: 
+      2px 2px #ff0055, 
+      -2px -2px #00fbff;
+  transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+  .user-name-design {
+    font-size: 60px;
+    letter-spacing: 8px;
+  }
+}
+
+@keyframes welcome-fade-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-welcome {
+  animation: welcome-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Architecture Graph Styles */
+.reversx-graph-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #080808;
+  border: 1px solid rgba(0, 212, 255, 0.1);
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+.reversx-graph-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.2s;
+}
+
+.reversx-graph-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.reversx-graph-label-text {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.65rem;
+  text-transform: none;
+  letter-spacing: 1px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+.reversx-node {
+  position: relative;
+  z-index: 2;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 220px;
+  max-width: 95%;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  color: #e0e0e0;
+}
+
+.reversx-node.active {
+  border-color: #00d4ff;
+  background: rgba(0, 212, 255, 0.02);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+  animation: node-pulse 2s infinite alternate;
+}
+
+@keyframes node-pulse {
+  from { box-shadow: 0 0 10px rgba(0, 212, 255, 0.1); }
+  to { box-shadow: 0 0 25px rgba(0, 212, 255, 0.3); }
+}
+
+.reversx-node.complete {
+  border-color: rgba(40, 167, 69, 0.2);
+  opacity: 0.8;
+}
+
+.reversx-node-analysis {
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 1px solid rgba(0, 212, 255, 0.3);
+  padding: 8px 12px;
+  margin: 5px 0;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+  border-radius: 0 4px 4px 0;
+}
+
+.reversx-line-container {
+  height: 40px;
+  width: 2px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.reversx-line-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, #00d4ff, rgba(0, 212, 255, 0.5));
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.reversx-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #333;
+  margin-left: auto;
+}
+
+.reversx-node.active .reversx-status-dot {
+  background: #00d4ff;
+  box-shadow: 0 0 8px #00d4ff;
+  animation: dot-flicker 1s infinite alternate;
+}
+
+@keyframes dot-flicker {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+.reversx-node.complete .reversx-status-dot {
+  background: #28a745;
+  box-shadow: 0 0 5px #28a745;
+}
+
+/* Ensure code blocks in markdown use inherited font */
+.markdown-content pre code, .markdown-content code {
+  font-family: inherit;
+  font-weight: 400;
+}
+
+/* GLOBAL ANIMATION DISABLE FOR DESKTOP ONLY */
+@media (min-width: 1024px) {
+  *, *::before, *::after {
+      transition: none !important;
+      animation: none !important;
+  }
+}
